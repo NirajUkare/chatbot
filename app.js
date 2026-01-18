@@ -53,13 +53,13 @@ app.use("/api/parent-chatbot", parentChatbotRoutes);
 app.get("/health", (req, res) => {
   res.status(200).send("OK");
 });
-
+const renderurl = 'https://server2-bpdx.onrender.com'
 cron.schedule(
   "*/10 * * * *",
   async () => {
     try {
       console.log("⏱ Pinging server to prevent sleep");
-      await axios.get(process.env.RENDER_URL + "/health");
+      await axios.get(`${renderurl}/health`);
       console.log("✅ Server ping successful");
     } catch (error) {
       console.error("❌ Server ping failed", error.message);
